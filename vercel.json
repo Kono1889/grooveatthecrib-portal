@@ -1,8 +1,5 @@
 {
   "buildCommand": "npm run build",
   "installCommand": "npm install",
-  "outputDirectory": "dist",
-  "env": {
-    "BACKEND_URL": "@BACKEND_URL"
-  }
+  "outputDirectory": "dist"
 }
