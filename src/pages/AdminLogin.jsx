@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
-import {VITE_API_URL} from "../constants";
 import "react-toastify/dist/ReactToastify.css";
 import useAdminStore from "../store/adminStore";
 import StylishLoader from "../components/StylishLoader";
@@ -81,9 +80,7 @@ export default function AdminLogin() {
     setLoading(true);
     try {
       const response = await fetch(
-        `${
-          VITE_API_URL || "http://localhost:5000/api"
-        }/admin/auth/login`,
+        `${import.meta.env.VITE_API_URL || "http://localhost:5000/api"}/admin/auth/login`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -116,7 +113,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-6 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100 px-6 py-12">
       <ToastContainer />
       <AnimatePresence>
         {showSuccess && (

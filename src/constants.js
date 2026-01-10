@@ -1,1 +1,0 @@
-const VITE_API_URL = "https://grooveatthecrib-portal-backend.onrender.com/api"
