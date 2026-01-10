@@ -1,8 +1,8 @@
 import axios from "axios";
-
+import {VITE_API_URL} from "../constants";
 // Determine API base URL based on environment
 const API_BASE_URL =
-  import.meta.env.VITE_API_URL ||
+  VITE_API_URL ||
   (import.meta.env.MODE === "production"
     ? "https://grooveatthecrib-portal-backend.onrender.com/api"
     : "http://localhost:5000/api");

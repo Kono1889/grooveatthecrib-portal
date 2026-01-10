@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
+import {VITE_API_URL} from "../constants";
 import "react-toastify/dist/ReactToastify.css";
 import useAdminStore from "../store/adminStore";
 import StylishLoader from "../components/StylishLoader";
@@ -81,7 +82,7 @@ export default function AdminLogin() {
     try {
       const response = await fetch(
         `${
-          import.meta.env.VITE_API_URL || "http://localhost:5000/api"
+          VITE_API_URL || "http://localhost:5000/api"
         }/admin/auth/login`,
         {
           method: "POST",
