@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Success from "./pages/Success";
+import ThankYou from "./pages/ThankYou";
 import WelcomePage from "./pages/WelcomePage";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminLogin from "./pages/AdminLogin";
@@ -17,6 +18,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/welcome/:id" element={<WelcomePage />} />
           <Route path="/success" element={<Success />} />
+          <Route path="/thank-you" element={<ThankYou />} />
 
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />

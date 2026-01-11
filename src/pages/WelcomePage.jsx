@@ -1,22 +1,27 @@
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import useStore from "../store";
 import { updateAllergy } from "../services/api";
 import StylishLoader from "../components/StylishLoader";
+import SuccessAnimation from "../components/SuccessAnimation";
 
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 export default function WelcomePage() {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const { user, setUser, setError } = useStore();
 
   const [hasAllergy, setHasAllergy] = useState(false);
   const [allergies, setAllergies] = useState("");
   const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
 
+  //  Fetch User
   useEffect(() => {
     const controller = new AbortController();
 
@@ -43,6 +48,18 @@ export default function WelcomePage() {
     return () => controller.abort();
   }, [id, setUser, setError]);
 
+  //  Auto Redirect After Success
+  useEffect(() => {
+    if (!saved) return;
+
+    const timer = setTimeout(() => {
+      navigate("/thank-you"); // change route if needed
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, [saved, navigate]);
+
+  //  Submit Handler
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -61,6 +78,8 @@ export default function WelcomePage() {
       });
 
       setUser(response.data.user);
+      setSaved(true); // Trigger animation
+
       toast.success("Allergy info saved successfully!");
     } catch (error) {
       console.error("Failed to save allergy info:", error);
@@ -72,7 +91,8 @@ export default function WelcomePage() {
     }
   };
 
-  if (!user) {
+  //  Loading State
+  if (!user && !saved) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <StylishLoader size="lg" text="Loading profile..." />
@@ -81,6 +101,17 @@ export default function WelcomePage() {
     );
   }
 
+  //  Success State
+  if (saved) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <SuccessAnimation />
+        <ToastContainer position="top-right" autoClose={3000} />
+      </div>
+    );
+  }
+
+  //  Form UI
   return (
     <div className="min-h-screen flex items-center justify-center px-6">
       <ToastContainer position="top-right" autoClose={3000} />
