@@ -76,7 +76,7 @@ export default function ThankYou() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35 }}
         >
-          Your response has been successfully recorded. We appreciate your time!
+          Your response has been successfully recorded! A ticket will be approved by the admin to your mail.
         </motion.p>
 
         {/* Button */}
