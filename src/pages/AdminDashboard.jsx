@@ -233,7 +233,7 @@ export default function AdminDashboard() {
     try {
       const res = await fetch(
         `${
-          import.meta.env.BACKEND_URL || "http://localhost:5000/api"
+          import.meta.env.VITE_BACKEND_URL || "http://localhost:5000/api"
         }/admin/verify-token`,
         {
           method: "POST",

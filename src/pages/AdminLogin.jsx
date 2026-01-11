@@ -81,7 +81,7 @@ export default function AdminLogin() {
     try {
       const response = await fetch(
         `${
-          import.meta.env.BACKEND_URL || "http://localhost:5000/api"
+          import.meta.env.VITE_BACKEND_URL || "http://localhost:5000/api"
         }/admin/auth/login`,
         {
           method: "POST",
