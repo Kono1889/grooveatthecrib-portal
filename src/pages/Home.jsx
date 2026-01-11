@@ -71,7 +71,7 @@ export default function Home() {
   }, [imageControls, svgControls, pControls, buttonControls]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-gradient-to-r from-teal-900  to-teal-500">
+    <div className="min-h-screen flex items-center text-center justify-center px-4 sm:px-6 bg-gradient-to-r from-teal-900  to-teal-500">
       {/* Centered content container with light background */}
       <div className="bg-[#F5FBE6] rounded-2xl p-8 sm:p-12 sm:py-52 md:p-12 flex flex-col items-center gap-6 max-w-xl shadow-xl">
         {/* H1 */}

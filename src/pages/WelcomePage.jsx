@@ -7,7 +7,8 @@ import useStore from "../store";
 import { updateAllergy } from "../services/api";
 import StylishLoader from "../components/StylishLoader";
 import SuccessAnimation from "../components/SuccessAnimation";
-
+import Confetti from "react-confetti";
+import Snowfall from "react-snowfall";
 const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 export default function WelcomePage() {
@@ -104,7 +105,8 @@ export default function WelcomePage() {
   //  Success State
   if (saved) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white">
+      <div className="min-h-screen flex items-center justify-center celebration-bg relative">
+        <Confetti numberOfPieces={250} recycle={false} />
         <SuccessAnimation />
         <ToastContainer position="top-right" autoClose={3000} />
       </div>
@@ -113,12 +115,13 @@ export default function WelcomePage() {
 
   //  Form UI
   return (
-    <div className="min-h-screen flex items-center justify-center px-6">
+    <div className="min-h-screen flex items-center justify-center px-6 celebration-bg">
+      <Snowfall color="teal"/>
       <ToastContainer position="top-right" autoClose={3000} />
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md"
+        className="bg-white/90 backdrop-blur-md p-8 rounded-xl shadow-2xl w-full max-w-md"
       >
         <h2 className="text-2xl font-bold mb-2">Welcome, {user.fullName}!</h2>
 

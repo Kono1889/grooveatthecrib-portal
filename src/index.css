@@ -34,3 +34,28 @@ body {
   background-size: 400% 400%;
   animation: nightGradient 25s ease infinite;
 }
+
+@keyframes celebrationGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.celebration-bg {
+  background: linear-gradient(
+    120deg,
+    #0f172a,
+    #1e3a8a,
+    #0ea5e9,
+    #22c55e,
+    #9333ea
+  );
+  background-size: 400% 400%;
+  animation: celebrationGradient 18s ease infinite;
+}

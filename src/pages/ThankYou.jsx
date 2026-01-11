@@ -1,97 +1,105 @@
-import React, { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import uno from "../assets/uno_card.png";
+import React from "react";
+import { motion } from "framer-motion";
+import skating from "../assets/roller-skating.svg";
+import Snowfall from "react-snowfall";
 
 export default function ThankYou() {
-  const containerRef = useRef(null);
-  const confettiCount = 30; // number of confetti emojis
-  const [confettiPositions] = useState(
-    Array.from({ length: confettiCount }).map(() => ({
-      left: Math.random() * 95,
-      top: Math.random() * 10,
-      emoji: [ "✨", "🥳", "💖", "🌟", "🎊"][
-        Math.floor(Math.random() * 6)
-      ],
-    }))
-  );
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate card entrance
-      gsap.from(".card", {
-        y: 50,
-        opacity: 0,
-        scale: 0.8,
-        duration: 1,
-        ease: "power3.out",
-      });
-
-      // Animate confetti continuously
-      gsap.utils.toArray(".confetti").forEach((el) => {
-        const duration = 4 + Math.random() * 2;
-        const delay = Math.random() * 2;
-        gsap.fromTo(
-          el,
-          { y: -50, opacity: 1, rotation: Math.random() * 360 },
-          {
-            y: 600,
-            rotation: "+=360",
-            duration,
-            ease: "power1.in",
-            repeat: -1,
-            delay,
-            yoyo: false,
-          }
-        );
-      });
-
-      // Button hover effect
-      const btn = document.querySelector(".btn-go-home");
-      btn.addEventListener("mouseenter", () => {
-        gsap.to(btn, { scale: 1.05, duration: 0.2 });
-      });
-      btn.addEventListener("mouseleave", () => {
-        gsap.to(btn, { scale: 1, duration: 0.2 });
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <div
-      ref={containerRef}
-      className="min-h-screen relative flex flex-col items-center justify-center bg-gradient-to-br from-purple-100 via-pink-100 to-indigo-100 px-6 overflow-hidden"
+    <motion.div
+      className="min-h-screen relative flex flex-col items-center justify-center bg-[#F5FBE6] px-6 overflow-hidden"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      {/* Confetti */}
-      {confettiPositions.map((c, i) => (
-        <span
-          key={i}
-          className="confetti absolute text-3xl"
-          style={{
-            left: `${c.left}%`,
-            top: `${c.top}%`,
-          }}
-        >
-          {c.emoji}
-        </span>
-      ))}
+      {/* Snowfall / Celebration */}
+      <Snowfall color="teal" snowflakeCount={120} />
 
       {/* Card */}
-      <div className="card bg-white rounded-2xl shadow-2xl p-10 max-w-md text-center z-10">
-        <h1 className="text-4xl md:text-5xl font-bold text-purple-600 mb-4">
+      <motion.div
+        className="bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl p-10 max-w-md text-center z-10 border border-white/40"
+        initial={{ y: 60, opacity: 0, scale: 0.85 }}
+        animate={{
+          y: 0,
+          opacity: 1,
+          scale: 1,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 120,
+          damping: 12,
+        }}
+        whileHover={{
+          y: -4,
+        }}
+      >
+        {/* Title */}
+        <motion.h1
+          className="text-4xl md:text-5xl font-bold text-teal-600 mb-4 drop-shadow-sm"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
           Thank You!
-        </h1>
-        <p className="text-gray-700 mb-6 text-lg">
+        </motion.h1>
+        {/* Image */}
+        <motion.img
+          src={skating}
+          alt="Thank You Illustration"
+          className="w-48 h-48 mx-auto mb-6"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{
+            scale: 1,
+            opacity: 1,
+            filter: [
+              "drop-shadow(0 0 10px rgba(14,165,233,0.4))",
+              "drop-shadow(0 0 25px rgba(14,165,233,0.8))",
+              "drop-shadow(0 0 10px rgba(14,165,233,0.4))",
+            ],
+          }}
+          transition={{
+            delay: 0.3,
+            type: "spring",
+            stiffness: 130,
+            damping: 15,
+            filter: {
+              duration: 2.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            },
+          }}
+        />
+
+        {/* Text */}
+        <motion.p
+          className="text-gray-800 mb-6 text-lg"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.35 }}
+        >
           Your response has been successfully recorded. We appreciate your time!
-        </p>
-        <button
+        </motion.p>
+
+        {/* Button */}
+        <motion.button
           onClick={() => (window.location.href = "/")}
-          className="btn-go-home bg-purple-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg"
+          className="bg-gradient-to-r from-teal-900 to-teal-500 text-white px-6 py-3 rounded-xl font-semibold shadow-lg"
+          whileHover={{
+            scale: 1.07,
+            boxShadow: "0px 0px 20px rgba(14,165,233,0.6)",
+          }}
+          whileTap={{ scale: 0.95 }}
+          animate={{
+            scale: [1, 1.04, 1],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         >
           Go Home
-        </button>
-      </div>
-    </div>
+        </motion.button>
+      </motion.div>
+    </motion.div>
   );
 }
