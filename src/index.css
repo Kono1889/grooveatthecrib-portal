@@ -7,3 +7,30 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+/* Add to your tailwind.css or global.css */
+@keyframes masculineRainbow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-masculine-gradient {
+  background: linear-gradient(270deg, #0f172a, #1e3a8a, #0ea5e9, #9333ea);
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: masculineRainbow 10s ease infinite;
+}
+
+@keyframes nightGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-night-background {
+  background: linear-gradient(135deg, #0f172a, #1e3a8a, #0ea5e9, #9333ea);
+  background-size: 400% 400%;
+  animation: nightGradient 25s ease infinite;
+}

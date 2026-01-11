@@ -71,11 +71,12 @@ export default function Home() {
   }, [imageControls, svgControls, pControls, buttonControls]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-gray-50">
-      <div className="max-w-xl text-center flex flex-col items-center gap-4 sm:gap-6">
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 bg-gradient-to-r from-teal-900  to-teal-500">
+      {/* Centered content container with light background */}
+      <div className="bg-[#F5FBE6] rounded-2xl p-8 sm:p-12 sm:py-52 md:p-12 flex flex-col items-center gap-6 max-w-xl shadow-xl">
         {/* H1 */}
         <motion.h1
-          className="text-3xl sm:text-4xl md:text-5xl font-bold flex flex-wrap justify-center items-center gap-4 sm:gap-6"
+          className="text-3xl text-[#233D4D]  sm:text-4xl md:text-5xl font-bold flex flex-wrap justify-center items-center gap-4 sm:gap-6 "
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
@@ -86,13 +87,13 @@ export default function Home() {
           }}
         >
           GROOVE{" "}
-          <span className="text-red-400 text-5xl sm:text-6xl font-light">
+          <span className="text-5xl sm:text-6xl font-light text-teal-400 drop-shadow-[0_0_15px_rgba(14_165_233_0.8)]">
             @
           </span>{" "}
-          THE CRIB 2026{" "}
+          THE CRIB 2026
           <motion.span animate={svgControls} initial={{ y: -50, opacity: 0 }}>
             <svg
-              className="w-12 h-12 text-red-400"
+              className="w-12 h-12 text-teal-400 drop-shadow-[0_0_15px_rgba(14,165,233,0.8)]"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -112,14 +113,14 @@ export default function Home() {
         <motion.img
           src={dancing}
           alt="dancing"
-          className="w-48 sm:w-60 md:w-72 mb-4"
+          className="w-48 sm:w-60 md:w-72 mb-4 drop-shadow-[0_0_20px_rgba(14,165,233,0.8)]"
           initial={{ y: -50, opacity: 0 }}
           animate={imageControls}
         />
 
         {/* Paragraph */}
         <motion.p
-          className="text-gray-600 text-sm sm:text-base md:text-lg mb-6"
+          className="text-[#233D4D] text-xs sm:text-base  md:text-lg mb-6"
           initial={{ y: 50, opacity: 0 }}
           animate={{
             y: 0,
@@ -134,7 +135,7 @@ export default function Home() {
         <motion.div animate={buttonControls}>
           <Link
             to="/register"
-            className="inline-block bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition"
+            className="inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-teal-900  to-teal-500 text-white font-bold shadow-lg border-none hover:scale-105 hover:shadow-cyan-500/70 transition-transform duration-300"
           >
             Register Now
           </Link>
